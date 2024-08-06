@@ -26,6 +26,12 @@ jobs:
     with:
       matrix-exclude: '[ {"jdk": "8"}, {"jdk": "11"} ]'
       jdk-distribution-matrix: '["zulu", "temurin", "microsoft", "liberica", "corretto"]'
+      # check also some non LTS versions
+      matrix-include: >
+              [
+                {"jdk": "23-ea", "os": "ubuntu-latest", distribution: "corretto" },
+                {"jdk": "22", "os": "ubuntu-latest", distribution: "corretto" }
+              ]
       maven_args: 'verify javadoc:javadoc -e -B -V -fae'
 
   deploy:
